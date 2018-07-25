@@ -1,0 +1,31 @@
+<view class="index">
+  <view class="index-hd" style='padding:30rpx'>
+
+      <swiper indicator-dots="true"
+        autoplay="true" interval="2000" duration="500">
+          <swiper-item>
+            <image style='width:100%;height:100%' src="../../../image/ad-demo.jpg"></image>
+          </swiper-item>
+          <swiper-item>
+            <image style='width:100%;height:100%' src="../../../image/ad2-demo.jpg"></image>
+          </swiper-item>
+      </swiper>
+
+  </view>
+  <view class="index-bd">
+    <view class="kind-list">
+      <block wx:for-items="{{list}}" wx:key="{{item._links.self.href}}">
+        <view class="kind-list-item">
+          <view class="kind-list-item-hd">
+            <image style='width:20%;height:120rpx' class="image" src="{{item.goodId.image}}"/>
+            <view class="kind-list-text" >{{item.goodId.name}}</view>
+            
+
+            
+            <button plain="true" type="primary"  data-id='{{item.objectId}}'  style='width:40%;height:110rpx' bindtap="showDetail"><a style="text-decoration:line-through">{{item.goodId.price}}</a>→{{item.price}}元</button>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

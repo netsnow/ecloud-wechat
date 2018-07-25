@@ -1,0 +1,23 @@
+<view class="index">
+
+  <view class="index-bd">
+    <view class="kind-list">
+      <block wx:for-items="{{list}}" wx:key="{{item._links.self.href}}">
+        <view class="kind-list-item">
+          <view class="kind-list-item-hd">
+            <image style='width:20%;height:120rpx' class="image" src="{{item.image}}"/>
+            <view class="kind-list-text" >{{item.name}}</view>
+            
+
+            
+            <button plain="true" type="primary"  data-id='{{item.objectId}}' data-goodname ='{{item.name}}'  data-totalprice ='{{item.totalPrice}}' data-count='{{item.count}}'  style='width:40%;height:120rpx' bindtap="postPay">{{item.count}}份:{{item.totalPrice}}元</button>
+            <view style='display:flex;flex-direction:column;margin-left:10rpx'>
+              <button id="{{item.objectId}}"  style="margin-top:0rpx;margin-bottom:5rpx" class='mini-btn' size='mini' type='primary' bindtap="countPlus">+</button>
+              <button id="{{item.objectId}}"  style="margin-top:0rpx;margin-bottom:0rpx" class='mini-btn' size='mini' type='warn' bindtap="countMinus">-</button>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

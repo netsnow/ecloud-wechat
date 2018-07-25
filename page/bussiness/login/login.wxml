@@ -1,0 +1,20 @@
+
+
+<view class="container">
+
+
+  <view class="page-body">
+    <view class="page-section">
+      <block wx:if="{{hasLogin === true}}">
+        <text class="page-body-title">已登录</text>
+
+      </block>
+      <block wx:if="{{hasLogin === false}}">
+
+        <button class="page-body-button" open-type="getUserInfo" bindgetuserinfo="login" type="primary" >微信登录</button>
+      </block>
+    </view>
+  </view>
+
+
+</view>
