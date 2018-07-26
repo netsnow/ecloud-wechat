@@ -1,0 +1,33 @@
+<view class="container">
+
+  <view class="page-body">
+    <view class="weui-cells__title">日期选择器</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">当前选择</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+            <view class="weui-input">{{date}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+
+    <view class="page-section">
+      <view class="weui-cells__title">请假人员</view>
+      <view class="weui-cells weui-cells_after-title">
+        <checkbox-group bindchange="checkboxChange">
+          <label class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="{{item.value}}">
+            <view class="weui-cell__hd">
+
+            </view>
+            <view class="weui-cell__bd">{{item.name}}</view>
+          </label>
+        </checkbox-group>
+      </view>
+    </view>
+  </view>
+
+</view>
