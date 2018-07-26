@@ -14,7 +14,7 @@ Page({
       app.globalData.openid = e.detail.userInfo.nickName;
       console.log(app.globalData.openid);
       wx.switchTab({
-        url: '../order/index'
+        url: '../leave/leave'
       })
     }else{
       wx.showToast({
