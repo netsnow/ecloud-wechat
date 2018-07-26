@@ -17,6 +17,12 @@ Page({
         url: '../order/index'
       })
     }else{
+      wx.showToast({
+        title: '登陆失败',
+        icon: 'none',
+        mask: true,
+        duration: 2000
+      })
       console.log("登陆失败");
     }
     
