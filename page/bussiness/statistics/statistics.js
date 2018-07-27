@@ -1,14 +1,13 @@
+var app = getApp()
+const requestUrl = require('../../../config').requestUrl
+const applicationId = require('../../../config').applicationId
+const restApiKey = require('../../../config').restApiKey
+
+
 Page({
   data: {
     date:'',
-    items: [
-      { value: 'USA', name: '美国' },
-      { value: 'CHN', name: '中国', checked: 'true' },
-      { value: 'BRA', name: '巴西' },
-      { value: 'JPN', name: '日本' },
-      { value: 'ENG', name: '英国' },
-      { value: 'FRA', name: '法国' }
-    ]
+    items: []
   },
   onShow: function(){
     var date = new Date()
@@ -17,14 +16,34 @@ Page({
     var month = date.getMonth() + 1
     var day = date.getDate()
     var today = year + "-" + (month < 10 ? '0' + month : month) + "-" + (day < 10 ? '0' + day : day)
-    this.setData({
-      date: today
-    })
+    this.showleave(today)
   },
   DateChange: function (e) {
     console.log(e)
-    this.setData({
-      date: e.detail.value
+    this.showleave(e.detail.value)
+  },
+  showleave: function (date) {
+    var self = this
+
+    var selectDate = date
+
+    wx.request({
+      url: requestUrl + '/1/classes/leave?where=%7B%22date%22:%22' + selectDate + '%22%7D',
+      header: {
+        'Content-Type': 'application/json',
+        'X-Bmob-Application-Id': applicationId,
+        'X-Bmob-REST-API-Key': restApiKey,
+      },
+      data: {
+        'include': 'user'
+      },
+      success: function (result) {
+        console.log(result)
+        self.setData({
+          items: result.data.results,
+          date: selectDate
+        })
+      }
     })
   }
 })
