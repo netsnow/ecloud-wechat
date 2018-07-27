@@ -33,9 +33,12 @@ Page({
           })
         }else{
           var userObjectId = result.data.results[0].objectId
-          var day = new Date()
-          day.setTime(day.getTime())
-          var today = day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + day.getDate()
+          var date = new Date()
+          date.setTime(date.getTime())
+          var year = date.getFullYear()
+          var month = date.getMonth() + 1
+          var day = date.getDate()
+          var today = year + "-" + (month < 10 ? '0' + month : month) + "-" + (day < 10 ? '0' + day : day)
 
           wx.request({
             url: requestUrl + '/1/classes/leave?where=%7B%22date%22:%22' + today + '%22%7D',

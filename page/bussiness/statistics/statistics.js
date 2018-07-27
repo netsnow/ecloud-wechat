@@ -1,5 +1,6 @@
 Page({
   data: {
+    date:'',
     items: [
       { value: 'USA', name: '美国' },
       { value: 'CHN', name: '中国', checked: 'true' },
@@ -9,23 +10,21 @@ Page({
       { value: 'FRA', name: '法国' }
     ]
   },
-  checkboxChange: function (e) {
-    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
-
-    var items = this.data.items, values = e.detail.value;
-    for (var i = 0, lenI = items.length; i < lenI; ++i) {
-      items[i].checked = false;
-
-      for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
-        if (items[i].value == values[j]) {
-          items[i].checked = true;
-          break
-        }
-      }
-    }
-
+  onShow: function(){
+    var date = new Date()
+    date.setTime(date.getTime())
+    var year = date.getFullYear()
+    var month = date.getMonth() + 1
+    var day = date.getDate()
+    var today = year + "-" + (month < 10 ? '0' + month : month) + "-" + (day < 10 ? '0' + day : day)
     this.setData({
-      items: items
+      date: today
+    })
+  },
+  DateChange: function (e) {
+    console.log(e)
+    this.setData({
+      date: e.detail.value
     })
   }
 })
