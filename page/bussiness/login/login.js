@@ -42,7 +42,7 @@ Page({
 
     }else{
       wx.showToast({
-        title: '登陆失败',
+        title: '登陆失败，可能是网络问题！',
         icon: 'none',
         mask: true,
         duration: 2000

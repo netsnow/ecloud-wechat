@@ -51,7 +51,7 @@ Page({
               var list = result.data.results
               var isExist = false
               for (var i = 0, len = list.length; i < len; ++i) {
-                if (list[i].user.wechatNickName == app.globalData.openid) {
+                if (list[i].user.wechatOpenId == app.globalData.openid) {
                   isExist = true
                 }
               }
@@ -90,7 +90,7 @@ Page({
                   },
                   fail: function ({ errMsg }) {
                     wx.showToast({
-                      title: '请假失败！',
+                      title: '请假失败,可能是网络问题！',
                       icon: 'none',
                       mask: true,
                       duration: 2000
