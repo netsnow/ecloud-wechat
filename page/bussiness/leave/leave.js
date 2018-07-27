@@ -15,7 +15,8 @@ Page({
   apply: function (memo) {
     //console.log(app.globalData.openid)
     wx.request({
-      url: requestUrl + '/1/classes/userinfo?where=%7B%22wechatOpenId%22:%22' + app.globalData.openid+'%22%7D',
+      url: requestUrl + '/1/classes/userinfo?where=%7B%22wechatNickName%22:%22' + app.globalData.nickname+'%22%7D',
+      //url: requestUrl + '/1/classes/userinfo?where=%7B%22wechatOpenId%22:%22' + app.globalData.openid + '%22%7D',
       header: {
         'Content-Type': 'application/json',
         'X-Bmob-Application-Id': applicationId,
@@ -54,7 +55,8 @@ Page({
               var list = result.data.results
               var isExist = false
               for (var i = 0, len = list.length; i < len; ++i) {
-                if (list[i].user.wechatOpenId == app.globalData.openid) {
+                if (list[i].user.wechatNickName == app.globalData.nickname) {
+                //if (list[i].user.wechatOpenId == app.globalData.openid) {
                   isExist = true
                 }
               }
