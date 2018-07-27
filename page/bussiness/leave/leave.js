@@ -8,6 +8,7 @@ Page({
   },
   onShow: function () {
     if (!app.globalData.hasLogin) {
+      wx.setStorageSync('backurl', 'leave')
       wx.redirectTo({ url: '../login/login' })
       //console.log("123");
     }
@@ -27,7 +28,7 @@ Page({
       success: function (result) {
         if(result.data.results.length == 0){
           wx.showToast({
-            title: '请补全用户信息',
+            title: '请点击我的，请补全用户信息！',
             icon: 'none',
             mask: true,
             duration: 2000

@@ -29,8 +29,9 @@ Page({
                 app.globalData.nickname = e.detail.userInfo.nickName;
                 console.log(app.globalData.openid);
                 //console.log(result)
+            var backurl = wx.getStorageSync('backurl');
                 wx.switchTab({
-                  url: '../leave/leave'
+                  url: '../' + backurl + '/' + backurl
                 })
             //  }
             //})
