@@ -12,14 +12,13 @@ Page({
   onShow: function (e) {
     var self = this
     wx.request({
-      url: requestUrl + '/1/classes/userinfo?where=%7B%22wechatNickName%22:%22' + app.globalData.openid + '%22%7D',
+      url: requestUrl + '/1/classes/userinfo?where=%7B%22wechatOpenId%22:%22' + app.globalData.openid + '%22%7D',
       header: {
         'Content-Type': 'application/json',
         'X-Bmob-Application-Id': applicationId,
         'X-Bmob-REST-API-Key': restApiKey,
       },
       data: {
-
       },
       success: function (result) {
         if (result.data.results.length == 0) {
@@ -59,7 +58,8 @@ Page({
         },
         method: 'POST',
         data: {
-          wechatNickName: app.globalData.openid,
+          wechatOpenId: app.globalData.openid,
+          wechatNickName: app.globalData.nickname,
           userName: e.detail.value.username
         },
         success: function (result) {

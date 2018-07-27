@@ -15,7 +15,7 @@ Page({
   apply: function (memo) {
     //console.log(app.globalData.openid)
     wx.request({
-      url: requestUrl + '/1/classes/userinfo?where=%7B%22wechatNickName%22:%22' + app.globalData.openid+'%22%7D',
+      url: requestUrl + '/1/classes/userinfo?where=%7B%22wechatOpenId%22:%22' + app.globalData.openid+'%22%7D',
       header: {
         'Content-Type': 'application/json',
         'X-Bmob-Application-Id': applicationId,
