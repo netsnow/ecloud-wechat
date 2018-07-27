@@ -15,6 +15,7 @@
       <block wx:if="{{hasLogin === false}}">
 
         <button class="page-body-button" open-type="getUserInfo" bindgetuserinfo="login" type="primary" >微信登录</button>
+        <view class="page-section-title">点击此按钮将授权小程序获得用户信息</view>
       </block>
     </view>
   </view>

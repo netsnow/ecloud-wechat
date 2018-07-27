@@ -120,5 +120,13 @@ Page({
   },
   leave: function (e) {
     this.apply("请假");
+  },
+  other:function(e){
+    wx.showToast({
+      title: '此模块稍后开放！',
+      icon: 'none',
+      mask: true,
+      duration: 2000
+    })
   }
 })
