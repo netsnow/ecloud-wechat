@@ -20,6 +20,11 @@ var config = {
     applicationId: `ca2f55a021ade113a81abccf0fc08c7b`,
     restApiKey: `605286cad82873618c7cb56b05c16fb7`,
 
+  requestUrlLogin: `https://lNvNTaOi.engine.lncld.net/1.1/functions/getUserInfo`,
+  applicationIdLogin: `lNvNTaOiN7tFSJ61h56mQFzu-gzGzoHsz`,
+  restApiKeyLogin: `VaHTizAja646yrQOGSr80sQw`,
+
+
     // 用code换取openId
     openIdUrl: `https://${host}/openid`,
 
