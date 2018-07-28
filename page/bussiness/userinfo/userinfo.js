@@ -8,6 +8,7 @@ Page({
     isDisable: false,
     isHidden: true,
     username: '',
+    group: '',
     lable: '',
   },
   onShow: function (e) {
@@ -42,10 +43,14 @@ Page({
             }
             self.setData({
               username: result.data.results[0].userName,
+              group: result.data.results[0].group,
               lable: '名字',
               isDisable: true,
               isHidden: isHidden
             })
+            app.globalData.userobjectid = result.data.results[0].objectId
+            app.globalData.username = result.data.results[0].userName
+            app.globalData.usergroup = result.data.results[0].group
           }
         }
       })
@@ -55,46 +60,78 @@ Page({
   formSubmit: function (e) {
     var self = this
     console.log(e)
-    if (e.detail.value.username == ''){
+    if (e.detail.value.username == '' || e.detail.value.group == ''){
       wx.showToast({
-        title: '请输入名称',
+        title: '请输入名字或组别',
         icon: 'none',
         mask: true,
         duration: 2000
       })
     }else{
-      wx.request({
-        url: requestUrl + '/1/classes/userinfo',
-        header: {
-          'Content-Type': 'application/json',
-          'X-Bmob-Application-Id': applicationId,
-          'X-Bmob-REST-API-Key': restApiKey,
-        },
-        method: 'POST',
-        data: {
-          wechatOpenId: app.globalData.openid,
-          wechatNickName: app.globalData.nickname,
-          userName: e.detail.value.username
-        },
-        success: function (result) {
-          wx.showToast({
-            title: '成功',
-            icon: 'success',
-            mask: true,
-            duration: 2000
-          })
-          self.setData({
-            lable: '名字',
-            isDisable: true,
-          })
-        }
-      })
+      if (app.globalData.userobjectid == ''){
+        wx.request({
+          url: requestUrl + '/1/classes/userinfo',
+          header: {
+            'Content-Type': 'application/json',
+            'X-Bmob-Application-Id': applicationId,
+            'X-Bmob-REST-API-Key': restApiKey,
+          },
+          method: 'POST',
+          data: {
+            wechatOpenId: app.globalData.openid,
+            wechatNickName: app.globalData.nickname,
+            userName: e.detail.value.username,
+            group: e.detail.value.group
+          },
+          success: function (result) {
+            wx.showToast({
+              title: '成功',
+              icon: 'success',
+              mask: true,
+              duration: 2000
+            })
+            self.setData({
+              lable: '名字',
+              isDisable: true,
+            })
+          }
+        })
+      }else{
+        wx.request({
+          url: requestUrl + '/1/classes/userinfo/' + app.globalData.userobjectid,
+          header: {
+            'Content-Type': 'application/json',
+            'X-Bmob-Application-Id': applicationId,
+            'X-Bmob-REST-API-Key': restApiKey,
+          },
+          method: 'PUT',
+          data: {
+            group: e.detail.value.group
+          },
+          success: function (result) {
+            wx.showToast({
+              title: '修改成功',
+              icon: 'success',
+              mask: true,
+              duration: 2000
+            })
+            self.setData({
+              lable: '名字',
+              isDisable: true,
+            })
+          }
+        })
+      }
+
     }
   },
   logout: function (e) {
     app.globalData.hasLogin = false
     app.globalData.openid = ''
     app.globalData.nickname = ''
+    app.globalData.userobjectid = ''
+    app.globalData.username = ''
+    app.globalData.usergroup = ''
     wx.switchTab({
       url: '../statistics/statistics'
     })

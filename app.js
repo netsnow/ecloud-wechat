@@ -14,6 +14,9 @@ App({
     hasLogin: false,
     openid: '',
     nickname: '',
+    userobjectid: '',
+    username: '',
+    usergroup: '',
   },
   // lazy loading openid
   getUserOpenId: function(callback) {
