@@ -1,8 +1,8 @@
 <view class="container">
 
-  <view class="page-body">
-    <view class="weui-cells__title">选择成员</view>
-    <view class="weui-cells weui-cells_after-title">
+  <view class="page-body" >
+    <view class="weui-cells__title" hidden="{{!isAdmin}}">选择成员</view>
+    <view class="weui-cells weui-cells_after-title" hidden="{{!isAdmin}}">
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
           <view class="weui-label">当前选择</view>
@@ -24,7 +24,7 @@
 
             </view>
             <view class="weui-cell__bd">{{item.date}}　{{item.leaveType}}</view>
-            <button class="mini-btn" data-objectid="{{item.objectId}}" type="warn" size="mini" bindtap="btnDelete">删除</button>
+            <button class="mini-btn" data-objectid="{{item.objectId}}" type="warn" size="mini" bindtap="btnDelete" disabled="{{!isAdmin}}" hidden="{{!isAdmin}}">删除</button>
           </label>
         
       </view>

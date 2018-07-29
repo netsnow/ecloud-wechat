@@ -8,19 +8,26 @@ Page({
     items: [],
     userList: [],
     index: 0,
+    isAdmin:false
   },
   onShow: function () {
-
+    //console.log(app.globalData.isadmin)
     var self = this
+    var myindex = -1
     userinfo.getAll(function(result){
-      console.log(result)
       var list = result.data.results
       var userList = []
       for (var i = 0, len = list.length; i < len; ++i) {
         userList.push(list[i].userName)
+        if (list[i].userName == app.globalData.username){
+          myindex = i
+        }
       }
+
       self.setData({
+        index: myindex,
         userList: userList,
+        isAdmin: app.globalData.isadmin
       })
       self.userChange(self.data.index)
     })
@@ -34,7 +41,7 @@ Page({
       index: index
     })
     leave.getByUserName(this.data.userList[index],function(result){
-      console.log(result)
+      //console.log(result)
       self.setData({
         items: result.data.results
       })
@@ -47,7 +54,7 @@ Page({
     leave.deleteByObjectId(e.currentTarget.dataset.objectid,function(result){
       self.userChange(self.data.index)
       wx.showToast({
-        title: '请假成功！',
+        title: '删除成功！',
         icon: 'success',
         mask: true,
         duration: 2000

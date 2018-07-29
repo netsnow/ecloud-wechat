@@ -17,6 +17,7 @@ App({
     userobjectid: '',
     username: '',
     usergroup: '',
+    isadmin:false,
   },
   // lazy loading openid
   getUserOpenId: function(callback) {

@@ -18,7 +18,7 @@ Page({
       wx.login({
         success: function(res) {
           if (res.code) {
-            console.log(res.code)
+            //console.log(res.code)
             //发起网络请求
             //wx.request({
             //  url: requestUrlLogin,

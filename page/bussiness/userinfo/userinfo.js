@@ -58,6 +58,7 @@ Page({
             app.globalData.userobjectid = result.data.results[0].objectId
             app.globalData.username = result.data.results[0].userName
             app.globalData.usergroup = result.data.results[0].group
+            app.globalData.isadmin = result.data.results[0].isAdmin
           }
         }
       })
