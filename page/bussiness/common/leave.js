@@ -74,6 +74,36 @@ function leaveapply(memo,date) {
   })
 
 }
+function getByUserName(userName,callback) {
+  console.log(userName)
+  var url = requestUrl + '/1/classes/leave'
+  var data = {
+    'order':'-date',
+    'where':{
+      "user":{
+        "$inQuery":{
+          "where":{
+            "userName": userName
+          },
+          "className": "userinfo"
+        },
+        
+      }
+    }
+  }
+  callapi(url, 'GET', data, function (result) {
+    callback(result)
+  })
+}
+function deleteByObjectId(objectId, callback) {
+  console.log(objectId)
+  var url = requestUrl + '/1/classes/leave/' + objectId
+  callapi(url, 'DELETE', {}, function (result) {
+    callback(result)
+  })
+}
 module.exports = {
-  leaveapply: leaveapply
+  leaveapply: leaveapply,
+  getByUserName: getByUserName,
+  deleteByObjectId: deleteByObjectId
 }

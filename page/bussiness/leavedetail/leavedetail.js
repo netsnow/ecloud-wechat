@@ -4,6 +4,7 @@ var leave = require("../common/leave.js")
 Page({
   data: {
     date: '',
+    today:'',
     items: []
   },
   onShow: function () {
@@ -13,7 +14,9 @@ Page({
     var month = date.getMonth() + 1
     var day = date.getDate()
     var today = year + "-" + (month < 10 ? '0' + month : month) + "-" + (day < 10 ? '0' + day : day)
-
+    this.setData({
+      today: today
+    })
   },
   DateChange: function (e) {
     var items = this.data.items

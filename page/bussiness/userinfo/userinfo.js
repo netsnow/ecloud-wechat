@@ -148,5 +148,8 @@ Page({
   },
   showAPI: function (e) {
     wx.navigateTo({ url: '../../API/index' })
+  },
+  showMange: function (e) {
+    wx.navigateTo({ url: '../leavemange/leavemange' })
   }
 })

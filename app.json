@@ -3,6 +3,7 @@
     "page/bussiness/statistics/statistics",
     "page/bussiness/leave/leave",
     "page/bussiness/leavedetail/leavedetail",
+    "page/bussiness/leavemange/leavemange",
     "page/bussiness/userinfo/userinfo",
     "page/bussiness/group/index",
     "page/bussiness/index",

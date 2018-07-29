@@ -1,35 +1,34 @@
 <view class="container">
 
   <view class="page-body">
-    <view class="weui-cells__title">选择日期</view>
+    <view class="weui-cells__title">选择成员</view>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
           <view class="weui-label">当前选择</view>
         </view>
         <view class="weui-cell__bd">
-          <picker mode="date" value="{{date}}" start="{{today}}" end="2020-09-01" bindchange="DateChange">
-            <view class="weui-input">{{date}}</view>
+          <picker range="{{userList}}" value="{{index}}"  bindchange="btnChange">
+            <view class="weui-input">{{userList[index]}}</view>
           </picker>
         </view>
       </view>
     </view>
 
     <view class="page-section">
-      <view class="weui-cells__title">请假日期</view>
+      <view class="weui-cells__title">请假清单</view>
       <view class="weui-cells weui-cells_after-title">
         
-          <label class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="{{item.value}}">
+          <label class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="{{items.value}}">
             <view class="weui-cell__hd">
 
             </view>
-            <view class="weui-cell__bd">{{item.userName}}　{{item.leaveDate}}</view>
+            <view class="weui-cell__bd">{{item.date}}　{{item.leaveType}}</view>
+            <button class="mini-btn" data-objectid="{{item.objectId}}" type="warn" size="mini" bindtap="btnDelete">删除</button>
           </label>
         
       </view>
     </view>
   </view>
-      <view class="btn-area">
-        <button type="primary" bindtap="leave">确定</button>
-      </view>
+
 </view>
