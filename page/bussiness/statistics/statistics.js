@@ -2,7 +2,7 @@ var app = getApp()
 const requestUrl = require('../../../config').requestUrl
 const applicationId = require('../../../config').applicationId
 const restApiKey = require('../../../config').restApiKey
-
+var leave = require("../common/leave.js")
 
 Page({
   data: {
@@ -10,6 +10,8 @@ Page({
     items: []
   },
   onShow: function(){
+    var self = this
+    console.log("group:"+app.globalData.usergroup)
     var date = new Date()
     date.setTime(date.getTime())
     var year = date.getFullYear()
@@ -17,6 +19,7 @@ Page({
     var day = date.getDate()
     var today = year + "-" + (month < 10 ? '0' + month : month) + "-" + (day < 10 ? '0' + day : day)
     this.showleave(today)
+
   },
   DateChange: function (e) {
     console.log(e)
@@ -25,25 +28,12 @@ Page({
   showleave: function (date) {
     var self = this
 
-    var selectDate = date
-
-    wx.request({
-      url: requestUrl + '/1/classes/leave?where=%7B%22date%22:%22' + selectDate + '%22%7D',
-      header: {
-        'Content-Type': 'application/json',
-        'X-Bmob-Application-Id': applicationId,
-        'X-Bmob-REST-API-Key': restApiKey,
-      },
-      data: {
-        'include': 'user'
-      },
-      success: function (result) {
-        console.log(result)
-        self.setData({
-          items: result.data.results,
-          date: selectDate
-        })
-      }
+    leave.getByGroupDate(app.globalData.usergroup, date, function (result) {
+      self.setData({
+        items: result.data.results,
+        date: date
+      })
     })
+
   }
 })

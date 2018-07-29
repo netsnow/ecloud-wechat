@@ -95,6 +95,20 @@ function getByUserName(userName,callback) {
     callback(result)
   })
 }
+function getByGroupDate(group, date,callback) {
+
+  var url = requestUrl + '/1/classes/leave'
+  var data = {
+    'include': 'user',
+    'order': '-date',
+    'where': {
+        "date": date
+    }
+  }
+  callapi(url, 'GET', data, function (result) {
+    callback(result)
+  })
+}
 function deleteByObjectId(objectId, callback) {
   console.log(objectId)
   var url = requestUrl + '/1/classes/leave/' + objectId
@@ -105,5 +119,6 @@ function deleteByObjectId(objectId, callback) {
 module.exports = {
   leaveapply: leaveapply,
   getByUserName: getByUserName,
+  getByGroupDate: getByGroupDate,
   deleteByObjectId: deleteByObjectId
 }
