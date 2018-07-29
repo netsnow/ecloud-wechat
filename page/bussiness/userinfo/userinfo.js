@@ -7,6 +7,7 @@ Page({
   data: {
     isDisable: false,
     isHidden: true,
+    isUser: true,
     username: '',
     group: '',
     lable: '',
@@ -41,12 +42,18 @@ Page({
             }else{
               var isHidden = true;
             }
+            if (result.data.results[0].isAdmin) {
+              var isUser = false
+            }else{
+              var isUser = true
+            }
             self.setData({
               username: result.data.results[0].userName,
               group: result.data.results[0].group,
               lable: '名字',
               isDisable: true,
-              isHidden: isHidden
+              isHidden: isHidden,
+              isUser: isUser
             })
             app.globalData.userobjectid = result.data.results[0].objectId
             app.globalData.username = result.data.results[0].userName

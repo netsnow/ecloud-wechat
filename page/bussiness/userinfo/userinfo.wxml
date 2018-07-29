@@ -27,6 +27,7 @@
       <view class="btn-area">
         <button type="primary" formType="submit">确认</button>
         <button bindtap="logout" type="warn">退出登录</button>
+        <button hidden="{{isUser}}" bindtap="showMange" type="default">管理</button>
         <button hidden="{{isHidden}}" bindtap="showComponent" type="default">组件</button>
         <button hidden="{{isHidden}}" bindtap="showAPI" type="default">接口</button>
       </view>
