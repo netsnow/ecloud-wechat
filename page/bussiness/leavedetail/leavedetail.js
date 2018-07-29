@@ -1,8 +1,5 @@
 var app = getApp()
-const requestUrl = require('../../../config').requestUrl
-const applicationId = require('../../../config').applicationId
-const restApiKey = require('../../../config').restApiKey
-
+var leave = require("../common/leave.js")
 
 Page({
   data: {
@@ -30,6 +27,9 @@ Page({
   leave: function(e){
     var items = this.data.items
     console.log(items)
+    for (var i = 0, len = items.length; i < len; ++i) {
+      leave.leaveapply('请假',items[i].leaveDate)
+    }
   },
 
 })
