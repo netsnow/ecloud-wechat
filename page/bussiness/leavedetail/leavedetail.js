@@ -12,6 +12,7 @@ Page({
     isAdmin: false
   },
   onShow: function () {
+    console.log(app.globalData)
     var date = new Date()
     date.setTime(date.getTime())
     var year = date.getFullYear()
@@ -60,7 +61,7 @@ Page({
     var items = this.data.items
     console.log(items)
     for (var i = 0, len = items.length; i < len; ++i) {
-      leave.leaveapply('请假', items[i].leaveDate, item[i].userName)
+      leave.leaveapply('请假', items[i].leaveDate, items[i].userName)
     }
   },
   userChange: function (e) {

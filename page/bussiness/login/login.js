@@ -3,6 +3,8 @@ const requestUrlLogin = require('../../../config').requestUrlLogin
 const applicationIdLogin = require('../../../config').applicationIdLogin
 const restApiKeyLogin = require('../../../config').restApiKeyLogin
 
+var userinfo = require("../common/userinfo.js")
+
 Page({
   onLoad: function() {
     this.setData({
@@ -38,6 +40,13 @@ Page({
             //    data = JSON.parse(result.data.result.data)
             //    app.globalData.openid = data.openid;
                 app.globalData.nickname = e.detail.userInfo.nickName;
+            userinfo.getByNickName(function (result) {
+              console.log(result);
+              app.globalData.username = result.data.results[0].userName;
+              app.globalData.isadmin = result.data.results[0].isAdmin;
+              app.globalData.userobjectid = result.data.results[0].objectId;
+              app.globalData.usergroup = result.data.results[0].group;
+            })
                 console.log(app.globalData.openid);
                 var backurl = wx.getStorageSync('backurl');
                 wx.switchTab({

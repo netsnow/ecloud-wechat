@@ -15,7 +15,7 @@ function getByNickName(callback) {
         duration: 2000
       })
     } else {
-      callback()
+      callback(result)
     }
   })
 }

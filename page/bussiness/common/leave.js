@@ -13,8 +13,10 @@ function leaveapply(memo,date,userName) {
     var today = year + "-" + (month < 10 ? '0' + month : month) + "-" + (day < 10 ? '0' + day : day)
     date = today
   }
-
-  var url = requestUrl + '/1/classes/userinfo?where=%7B%22wechatNickName%22:%22' + app.globalData.nickname + '%22%7D'
+  if (userName == undefined) {
+    userName = app.globalData.username
+  }
+  var url = requestUrl + '/1/classes/userinfo?where=%7B%22userName%22:%22' + userName + '%22%7D'
   callapi(url, 'GET', {}, function(result) {
 
     if (result.data.results.length == 0) {
@@ -37,14 +39,14 @@ function leaveapply(memo,date,userName) {
         var list = result.data.results
         var isExist = false
         for (var i = 0, len = list.length; i < len; ++i) {
-          if (list[i].user.wechatNickName == app.globalData.nickname) {
+          if (list[i].user.userName == userName) {
             //if (list[i].user.wechatOpenId == app.globalData.openid) {
             isExist = true
           }
         }
         if (isExist) {
           wx.showToast({
-            title: date+'：已请过假！',
+            title: userName+':'+date+'：已请过假！',
             icon: 'none',
             mask: true,
             duration: 2000
