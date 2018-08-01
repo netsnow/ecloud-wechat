@@ -2,7 +2,7 @@ var app = getApp()
 const requestUrl = require('../../../config').requestUrl
 var callapi = require("./base/callapi.js").callapi
 
-function leaveapply(memo,date) {
+function leaveapply(memo,date,userName) {
 
   if (date == undefined){
     var date = new Date()

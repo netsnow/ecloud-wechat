@@ -1,6 +1,20 @@
 <view class="container">
 
   <view class="page-body">
+    <view class="weui-cells__title" hidden="{{!isAdmin}}">选择成员</view>
+    <view class="weui-cells weui-cells_after-title" hidden="{{!isAdmin}}">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">当前选择</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker range="{{userList}}" value="{{index}}"  bindchange="userChange">
+            <view class="weui-input">{{userList[index]}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+
     <view class="weui-cells__title">选择日期</view>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">

@@ -18,6 +18,23 @@ function getByNickName(callback) {
       callback()
     }
   })
+}
+  function getByUserName(userName,callback) {
+
+    var url = requestUrl + '/1/classes/userinfo?where=%7B%22userName%22:%22' + userName + '%22%7D'
+    callapi(url, 'GET', {}, function (result) {
+
+      if (result.data.results.length == 0) {
+        wx.showToast({
+          title: '请点击我的，请补全用户信息！',
+          icon: 'none',
+          mask: true,
+          duration: 2000
+        })
+      } else {
+        callback(result)
+      }
+    })
 
 }
 function getAll(callback) {
@@ -33,5 +50,6 @@ function getAll(callback) {
 }
 module.exports = {
   getAll: getAll,
-  getByNickName: getByNickName
+  getByNickName: getByNickName,
+  getByUserName: getByUserName
 }
