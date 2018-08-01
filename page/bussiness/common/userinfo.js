@@ -19,7 +19,7 @@ function getByNickName(callback) {
     }
   })
 }
-  function getByUserName(userName,callback) {
+function getByUserName(userName,callback) {
 
     var url = requestUrl + '/1/classes/userinfo?where=%7B%22userName%22:%22' + userName + '%22%7D'
     callapi(url, 'GET', {}, function (result) {

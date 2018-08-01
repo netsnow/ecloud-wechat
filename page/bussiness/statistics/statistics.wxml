@@ -1,7 +1,10 @@
 <view class="container">
 
   <view class="page-body">
-    <view class="weui-cells__title">选择日期</view>
+    <view style='display: flex;flex-direction: row;'>
+      <view class="weui-cells__title">选择日期</view>
+      <view class="weui-cells__title" style='color:{{color}}'>正常出勤人数：{{delaycount}}(含迟到：{{leavecount}})</view>
+    </view>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">

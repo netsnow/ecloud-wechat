@@ -7,7 +7,7 @@
       <view class="btn-area">
         <button type="primary" bindtap="leave">今日请假</button>
         <button type="default" bindtap="delay">今日迟到（1小时以内）</button>
-        <button type="default" bindtap="other">其他选项</button>
+        <button type="default" bindtap="other">其他请假选项</button>
       </view>
     </form>
   </view>

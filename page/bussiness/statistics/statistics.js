@@ -2,11 +2,16 @@ var app = getApp()
 const requestUrl = require('../../../config').requestUrl
 const applicationId = require('../../../config').applicationId
 const restApiKey = require('../../../config').restApiKey
+
 var leave = require("../common/leave.js")
+var usergroup = require("../common/usergroup.js")
 
 Page({
   data: {
     date:'',
+    color: 'green',
+    delaycount:'',
+    leavecount: '',
     items: []
   },
   onShow: function(){
@@ -27,13 +32,37 @@ Page({
   },
   showleave: function (date) {
     var self = this
+    usergroup.getByName('爱谁谁',function (result) {
+      var allcount = result.data.results[0].count
 
-    leave.getByGroupDate(app.globalData.usergroup, date, function (result) {
-      self.setData({
-        items: result.data.results,
-        date: date
+      leave.getByGroupDate(app.globalData.usergroup, date, function (result) {
+        var delaycount = allcount - result.data.results.length
+
+        var list = result.data.results
+        var leavecount = delaycount
+        var color = 'green'
+
+        for (var i = 0, len = list.length; i < len; ++i) {
+          if (list[i].leaveType == '迟到'){
+            leavecount = leavecount +1
+          }
+        }
+        if (delaycount < 20) {
+          color = 'blue'
+        }
+        if (leavecount < 20) {
+          color = 'red'
+        }
+        self.setData({
+          items: result.data.results,
+          date: date,
+          color:color,
+          delaycount: delaycount,
+          leavecount: leavecount
+        })
       })
     })
+
 
   }
 })
