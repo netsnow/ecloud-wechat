@@ -16,7 +16,8 @@
 
         <button class="page-body-button" open-type="getUserInfo" bindgetuserinfo="login" type="primary" >微信登录</button>
         <view class="page-section-title">点击此按钮将授权小程序获得用户信息</view>
-        <view class="page-section-title">作者QQ：10356767，备注：加好友请注明来意</view>
+        <view class="page-section-title">作者QQ：10356767，加好友请注明来意</view>
+        <view class="page-section-title">目前只支持本团队内部使用，若想使用请联系作者</view>
       </block>
     </view>
   </view>

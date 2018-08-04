@@ -23,10 +23,7 @@
       <view class="weui-cells weui-cells_after-title">
         
           <label class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="{{item.value}}">
-            <view class="weui-cell__hd">
-
-            </view>
-            <view class="weui-cell__bd">{{item.user.userName}}　{{item.leaveType}}</view>
+            <view class="weui-cell__bd">{{item.user.userName}}</view><view class="weui-cell__bd">{{item.leaveType}}</view>
           </label>
         
       </view>
