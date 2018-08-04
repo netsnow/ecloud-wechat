@@ -50,15 +50,26 @@ Page({
   },
   btnDelete: function (e) {
     var self = this
-    console.log(e)
-    leave.deleteByObjectId(e.currentTarget.dataset.objectid,function(result){
-      self.userChange(self.data.index)
-      wx.showToast({
-        title: '删除成功！',
-        icon: 'success',
-        mask: true,
-        duration: 2000
-      })
+    wx.showModal({
+      //title: '提示',
+      content: '是否确定删除？',
+      success: function (res) {
+        if (res.confirm) {
+          console.log(e)
+          leave.deleteByObjectId(e.currentTarget.dataset.objectid, function (result) {
+            self.userChange(self.data.index)
+            wx.showToast({
+              title: '删除成功！',
+              icon: 'success',
+              mask: true,
+              duration: 2000
+            })
+          })
+        } else if (res.cancel) {
+          //console.log('用户点击取消')
+        }
+      }
     })
+
   }
 })

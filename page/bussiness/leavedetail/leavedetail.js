@@ -59,10 +59,23 @@ Page({
   },
   leave: function(e){
     var items = this.data.items
-    console.log(items)
-    for (var i = 0, len = items.length; i < len; ++i) {
-      leave.leaveapply('请假', items[i].leaveDate, items[i].userName)
-    }
+    wx.showModal({
+      //title: '提示',
+      content: '是否确定请假？',
+      success: function (res) {
+        if (res.confirm) {
+          
+          console.log(items)
+          for (var i = 0, len = items.length; i < len; ++i) {
+            leave.leaveapply('请假', items[i].leaveDate, items[i].userName)
+          }
+        } else if (res.cancel) {
+          //console.log('用户点击取消')
+        }
+      }
+    })
+
+
   },
   userChange: function (e) {
     self = this

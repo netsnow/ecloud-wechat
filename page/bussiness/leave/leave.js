@@ -12,10 +12,32 @@ Page({
     }
   },
   delay: function (e) {
-    leave.leaveapply("迟到");
+    wx.showModal({
+      //title: '提示',
+      content: '是否确定迟到？',
+      success: function (res) {
+        if (res.confirm) {
+          leave.leaveapply("迟到");
+        } else if (res.cancel) {
+          //console.log('用户点击取消')
+        }
+      }
+    })
+
   },
   leave: function (e) {
-    leave.leaveapply("请假");
+    wx.showModal({
+      //title: '提示',
+      content: '是否确定请假？',
+      success: function (res) {
+        if (res.confirm) {
+          leave.leaveapply("请假");
+        } else if (res.cancel) {
+          //console.log('用户点击取消')
+        }
+      }
+    })
+    
   },
   other:function(e){
     wx.navigateTo({ url: '../leavedetail/leavedetail' })
