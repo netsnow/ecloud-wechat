@@ -3,6 +3,11 @@ var leave = require("../common/leave.js")
 
 Page({
   data: {
+    shareData: {
+      title: '大家来请假',
+      //desc: '今日请假人员详细列表',
+      path: 'page/bussiness/leave/leave'
+    }
   },
   onShow: function () {
     if (!app.globalData.hasLogin) {
@@ -41,5 +46,8 @@ Page({
   },
   other:function(e){
     wx.navigateTo({ url: '../leavedetail/leavedetail' })
+  },
+  onShareAppMessage: function () {
+    return this.data.shareData
   }
 })

@@ -8,15 +8,20 @@ var usergroup = require("../common/usergroup.js")
 
 Page({
   data: {
-    date:'',
+    date: '',
     color: 'green',
-    delaycount:'',
+    delaycount: '',
     leavecount: '',
-    items: []
+    items: [],
+    shareData: {
+      title: '今日请假',
+      //desc: '今日请假人员详细列表',
+      path: 'page/bussiness/statistics/statistics'
+    }
   },
-  onShow: function(){
+  onShow: function () {
     var self = this
-    console.log("group:"+app.globalData.usergroup)
+    console.log("group:" + app.globalData.usergroup)
     var date = new Date()
     date.setTime(date.getTime())
     var year = date.getFullYear()
@@ -32,7 +37,7 @@ Page({
   },
   showleave: function (date) {
     var self = this
-    usergroup.getByName('爱谁谁',function (result) {
+    usergroup.getByName('爱谁谁', function (result) {
       var allcount = result.data.results[0].count
 
       leave.getByGroupDate(app.globalData.usergroup, date, function (result) {
@@ -43,8 +48,8 @@ Page({
         var color = 'green'
 
         for (var i = 0, len = list.length; i < len; ++i) {
-          if (list[i].leaveType == '迟到'){
-            leavecount = leavecount +1
+          if (list[i].leaveType == '迟到') {
+            leavecount = leavecount + 1
           }
         }
         if (delaycount < 20) {
@@ -56,7 +61,7 @@ Page({
         self.setData({
           items: result.data.results,
           date: date,
-          color:color,
+          color: color,
           delaycount: delaycount,
           leavecount: leavecount
         })
@@ -64,5 +69,8 @@ Page({
     })
 
 
+  },
+  onShareAppMessage: function () {
+    return this.data.shareData
   }
 })
